@@ -1,7 +1,9 @@
 ﻿using Kolokwium2.Exceptions;
+using Kolokwium2.Models.DTO;
 using Kolokwium2.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Kolokwium2.Controllers
@@ -30,6 +32,21 @@ namespace Kolokwium2.Controllers
                 return BadRequest(exc.Message);
             }
             
+        }
+        [HttpPost]
+        
+        public async Task<IActionResult> AddMemberAsync(SomeSortOfMember newMember)
+        {
+            try
+            {
+                await _dbService.AddMember(newMember);
+                return Ok("Member added");
+            }
+            catch (Exception exc)
+            {
+                return BadRequest("Member not added");
+            }
+
         }
     }
 }

@@ -18,10 +18,11 @@ namespace Kolokwium2.Services
             _dbContext = dbContext;
         }
 
-        public async Task AddMember(SomeSortOfMemberRequest newMember)
+        public async Task AddMember(SomeSortOfMember newMember)
         {
-            var member = await _dbContext.Members.Where(e => e.MemberId == newMember.MemberID).FirstOrDefaultAsync();
-            if (member == null) throw new MemberNotFoundException();
+            
+            _dbContext.Add(new Member { MemberName = newMember.MemberName, MemberSurname = newMember.MemberSurname});
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<SomeSortOfTeam> GetTeamAsync(int TeamID)
