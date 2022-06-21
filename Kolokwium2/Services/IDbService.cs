@@ -7,6 +7,6 @@ namespace Kolokwium2.Services
     public interface IDbService
     {
         Task<SomeSortOfTeam> GetTeamAsync(int TeamID);
-        Task AddMember(SomeSortOfMember newMember);
+        Task AddMember(SomeSortOfMemberRequest newMember);
     }
 }

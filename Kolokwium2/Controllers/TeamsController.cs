@@ -35,14 +35,14 @@ namespace Kolokwium2.Controllers
         }
         [HttpPost]
         
-        public async Task<IActionResult> AddMemberAsync(SomeSortOfMember newMember)
+        public async Task<IActionResult> AddMemberAsync(SomeSortOfMemberRequest newMember)
         {
             try
             {
                 await _dbService.AddMember(newMember);
                 return Ok("Member added");
             }
-            catch (Exception exc)
+            catch (MemberNotFoundException exc)
             {
                 return BadRequest("Member not added");
             }
